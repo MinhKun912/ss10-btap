@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta charset="utf-8">
+  <title>SimpleSheets Shopping Cart Demo</title>
+  <link rel='stylesheet' href="//fonts.googleapis.com/css?family=Duru+Sans|Istok+Web">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
+
 <body>
-<h1 th:text="${'View count: ' + counter.count}"></h1>
+
+  <div class="site-container">
+
+    <header class="site-header" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+      <div class="wrap">
+
+        <div class="title-area">
+          <h1 class="site-title" itemprop="headline"><a href="/">Shoping Cart</a></h1>
+        </div>
+
+        <div class="simplecart_area">
+          <div class="simplecart_cart">
+            <span class="showCart">
+          <span class="fa fa-shopping-cart"></span>
+            <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+            <span class="dropdown fa fa-chevron-circle-down"></span>
+            </span>
+            <div id="cartPopover" style="display:none">
+              <div class="simpleCart_items"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="site-inner">
+      <div class="wrap">
+
+        <div id="products" class="products">
+
+          <form th:block th:each="product:${products}" id="hr-template" type="text/x-handlebars-template">
+
+              <div class="simpleCart_shelfItem item">
+                <div class="item_image"><img src="https://product.hstatic.net/200000581855/product/giay_nike_air_jordan_1_mid__smoke_grey__554724-0923_745c4366b7254e618f4a0b504c313e07_grande.png"></div>
+                <h2 class="item_name" th:text="${product.name}"></h2>
+                <div class="item_description" th:text="${product.description}"></div>
+                <div style="margin-top:10px;">
+                  <span class="item_price" th:text="${product.price}"></span>
+                  <button class="item_add">Add to Cart</button>
+                </div>
+              </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{js/simpleCart.min.js}"></script>
+    <script th:src="@{js/handlebars.min.js}"></script>
+    <script th:src="@{js/sheetrock.min.js}"></script>
+    <script th:src="@{js/main.js}"></script>
+
+  </div>
+
 </body>
+
 </html>
